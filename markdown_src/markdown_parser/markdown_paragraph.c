@@ -1,10 +1,9 @@
 
 #include <string.h>
-#include "markdown_paragraph.h"
-#include "markdown_sentence.h"
-#include "../markdown_convert/markdown_tohtml.h"
+#include <markdown_paragraph.h>
+#include <markdown_sentence.h>
+#include <../markdown_convert/markdown_tohtml.h>
 #include <stdlib.h>
-#include <zconf.h>
 
 
 markdown_prg *prg = NULL;
@@ -295,6 +294,12 @@ void pop_sentence (char *file_path) {
     int pi = -1;
     bool is_block = false;
     produce_tmp_html_file(file_path, NULL, true);
+    if (!prg) {
+        printf("空文件\n");
+        remove_tmp_html_file(file_path);
+        fflush(stdout);
+        return;
+    }
     for (i = 0; i < prg->line_sum; ++i) {
         if (prg->stces[i].types[0] == MD_BLOCK) {
             if (!is_block) {

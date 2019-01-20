@@ -14,6 +14,6 @@ typedef struct md_stce {
 
 void process_line (char *path, FILE *f);
 
-void process_sentence (char *path);
+void process_sentence (char *path, char *tmp_path);
 
 #endif //HTTPSERV_MARKDOWN_SENTENCE_H

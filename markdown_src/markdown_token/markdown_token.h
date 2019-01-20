@@ -19,8 +19,7 @@ void produce_token (md_token *mt, FILE *f);
 
 void read_token (md_token *mt, FILE *f);
 
-void skip_space (char *file_path);
+void skip_space (char *file_path, char *tmp_file);
 
 #endif //HTTPSERV_MARKDOWN_TOKEN_H
-
 

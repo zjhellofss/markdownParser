@@ -38,7 +38,4 @@ typedef int MD_TYPE;
 #define true 1
 #define false 0
 #define bool int
-#define MD_FILE_PATH "/Users/fss/CLionProjects/httpServ/source/module/markdown_module/test_/test.md"
-#define MD_TMP_PATH "/Users/fss/CLionProjects/httpServ/source/module/markdown_module/test_/tmp.md"
-#define MD_HTML_PATH "/Users/fss/CLionProjects/httpServ/source/module/markdown_module/markdown_src/markdown_convert/send.html"
 #endif //HTTPSERV_MARKDOWN_STRUCT_H

@@ -26,6 +26,21 @@ void make_real_html (char *file) {
     fclose(f2);
     /*删除临时文件*/
     remove(html_file);
+    printf("转换完毕，请在html同目录下寻找产生的md文件\n");
+}
+
+void remove_tmp_html_file (char *file) {
+    char *file_;
+    file_ = strchr(file, '.');
+    char html_file[256] = {0};
+    strncpy(html_file, file, file_ - file);
+    strcpy(html_file + strlen(html_file), ".html");
+    FILE*t = fopen(html_file, "w+");
+    if(!t){
+        fclose(t);
+    }
+    strcpy(html_file + strlen(html_file), ".tmp");
+    remove(html_file);
 }
 
 void produce_tmp_html_file (char *file, char *buf, bool init) {

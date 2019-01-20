@@ -2,14 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <regex.h>
-#include "markdown_sentence.h"
-#include "../markdown_config.h"
-#include "markdown_token/markdown_token.h"
-#include "markdown_paragraph.h"
-
-/**
-*  语法分析器
-*/
+#include <markdown_sentence.h>
+#include <../markdown_config.h>
+#include <markdown_token/markdown_token.h>
+#include <markdown_paragraph.h>
 
 void init_stce (md_stce *st) {
     st->s_size = 0;
@@ -22,6 +18,11 @@ void process_line (char *path, FILE *f) {
     size_t len = 0;
     ssize_t read;
     FILE *fc = fopen(path, "w");
+    if (!fc) {
+        printf("请输入有效的md文件地址\n");
+        fflush(stdout);
+        exit(1);
+    }
     while ((read = getline(&line, &len, f)) != -1) {
         if (!strcmp(line, "\n")) {
             continue;
@@ -37,9 +38,9 @@ void process_line (char *path, FILE *f) {
 }
 
 
-void process_sentence_ (int read, md_stce *stce) {
+void process_sentence_ (int read, md_stce *stce, char *tmp_path) {
     md_token mt;
-    FILE *f = fopen(MD_TMP_PATH, "r");
+    FILE *f = fopen(tmp_path, "r");
     while (true) {
         init_token(&mt);
         produce_token(&mt, f);
@@ -55,7 +56,7 @@ void process_sentence_ (int read, md_stce *stce) {
     fclose(f);
 }
 
-void process_sentence (char *path) {
+void process_sentence (char *path, char *tmp_path) {
     char *line = malloc(sizeof(char) * 512);
     char *m_line = line;
     size_t len = 0;
@@ -129,7 +130,7 @@ void process_sentence (char *path) {
             st.tokens[st.s_size++] = token_tmp;
         } else {
             es:
-            out_md = fopen(MD_TMP_PATH, "w");
+            out_md = fopen(tmp_path, "w");
             size_t l = strlen(line);
             if (line[l - 1] == '\n')
                 line[l - 1] = '\0';
@@ -138,7 +139,7 @@ void process_sentence (char *path) {
             fclose(out_md);
             //todo
             init_stce(&st);
-            process_sentence_(read, &st);
+            process_sentence_(read, &st, tmp_path);
         }
         push_sentence(st);
     }

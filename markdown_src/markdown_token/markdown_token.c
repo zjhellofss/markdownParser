@@ -3,8 +3,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include "markdown_token.h"
-#include "markdown_sentence.h"
+#include <markdown_token.h>
+#include <markdown_sentence.h>
 #include <regex.h>
 
 void init_token (md_token *token) {
@@ -34,15 +34,23 @@ bool is_space (char c) {
     return c == ' ' || c == '\t' || c == '\v' || c == '\f';
 }
 
-void skip_space (char *file_path) {
+void skip_space (char *file_path,char *tmp_file) {
     char pre = '\0';
     FILE *input_md, *tmp_md;
     char c;
     input_md = fopen(file_path, "r");
-    tmp_md = fopen(MD_TMP_PATH, "w");
-    if (!tmp_md || !input_md) {
+    if(!input_md){
+        printf("请输入有效的md文件地址\n");
+        fflush(stdout);
         exit(1);
     }
+    tmp_md = fopen(tmp_file, "w");
+    if(!tmp_md){
+        printf("请输入有效的缓冲文件地址\n");
+        fflush(stdout);
+        exit(1);
+    }
+
     while (fread(&c, 1, 1, input_md)) {
         if (((pre != '#' && pre != '*' && pre != '-') && ((is_space(pre) && is_space(c)))  ))
             continue;
