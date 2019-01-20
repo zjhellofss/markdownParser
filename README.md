@@ -1,5 +1,4 @@
 # 基于C语言的markdown解析器
-<hr/>
 
 ## 当前支持的语法
 
@@ -24,8 +23,16 @@
 ```
 ## 解析器的使用
 
+在shell中使用
+```bash
+  $ ./parser test.md
+  $ ls -l test.html
+```
+**在markdown所在的文件目录下会生成对应的html文件**
+
+以模块的方式在C项目中使用
 ```c
     const char *file_name = "test.md"
     do_parser(file_name);
 ```
-**在当前目录下会生成对应的html文件**
+
