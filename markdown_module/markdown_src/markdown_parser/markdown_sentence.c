@@ -6,7 +6,6 @@
 #include "../markdown_config.h"
 #include "markdown_token/markdown_token.h"
 #include "markdown_paragraph.h"
-#include "../markdown_token/markdown_table.h"
 
 /**
 *  语法分析器
