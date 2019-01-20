@@ -4,7 +4,6 @@
 #define HTTPSERV_MARKDOWN_PARAGRAPH_H
 
 
-
 #include "../markdown_config.h"
 #include "markdown_sentence.h"
 #include <string.h>
@@ -20,6 +19,16 @@ void init_paragraph ();
 
 void push_sentence (md_stce stce);
 
+char *produce_underline (char *str);
+
 void pop_sentence ();
+
+char *produce_img_link (char *img_link);
+
+char *produce_checkbox (char c);
+
+char *produce_link_link (char *link);
+
+char *produce_highlight (char *str);
 
 #endif //HTTPSERV_MARKDOWN_PARAGRAPH_H

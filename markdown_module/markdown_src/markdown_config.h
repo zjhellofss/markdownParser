@@ -28,12 +28,13 @@
 #define MD_IMG  0x10
 #define MD_BLOCK 0x11
 #define MD_LINE 0x12
+#define MD_CHECKBOX 0x13
+#define MD_HIGHLIGHT 0x14
+#define MD_UNDER  0x15
+#define MD_FORM 0x16
+#define MD_FOOT 0x17
 typedef int MD_TYPE;
-
-
 #define MD_MAX_STCE 512
-
-
 #define true 1
 #define false 0
 #define bool int
