@@ -11,6 +11,9 @@
 * 脚标
 * 表格
 
+## 解析效果展示
+[请点击查看解析生成的文件](http://118.25.89.81/index1.html)
+
 ## 编译流程
 
 ```Bash
@@ -25,7 +28,7 @@
 
 在shell中使用
 ```bash
-  $ ./parser test.md
+  $ md_parser test.md
   $ ls -l test.html
 ```
 **在markdown所在的文件目录下会生成对应的html文件**
@@ -37,5 +40,4 @@
 ```
 
 
-## 解析效果展示
-[请点击查看测试生成的文件](http://118.25.89.81/index1.html)
+
