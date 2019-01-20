@@ -96,7 +96,7 @@ void produce_token (md_token *mt, FILE *f) {
                 /**下划线功能的实现*/
                 read_token(mt, f);
                 if (fread(&fc, sizeof(char), 1, f)) {
-                    if (fc) {
+                    if (fc=='_') {
                         mt->type = MD_UNDER;
                     } else {
                         fseek(f, -1, SEEK_CUR);
@@ -116,7 +116,7 @@ void produce_token (md_token *mt, FILE *f) {
             case '@': {
                 read_token(mt, f);
                 if (fread(&fc, sizeof(char), 1, f)) {
-                    if (fc) {
+                    if (fc=='@') {
                         mt->type = MD_HIGHLIGHT;
                     } else {
                         fseek(f, -1, SEEK_CUR);
