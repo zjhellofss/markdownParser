@@ -11,6 +11,33 @@
 * 脚标
 * 表格
 
+<table >
+    <tr>
+        <td>加粗</td>
+        <td>斜体</td>
+        <td>下划线</td>
+        <td>图片</td>
+        <td>表格</td>
+        <td>链接</td>
+        <td>删除</td>
+        <td>代码段</td>
+       <td>语法高亮</td>
+       <td>脚注</td>
+        </tr>
+    <tr>
+            <td>√</td>
+            <td>√</td>
+            <td>√</td>
+            <td>√</td>
+            <td>√</td>
+            <td>√</td>
+            <td>√</td>
+            <td>√</td>
+     <td>√</td>
+            <td>√</td>
+    </tr>
+</table>
+
 ## 解析效果展示
 [请点击查看解析生成的文件](http://118.25.89.81/index1.html)
 
