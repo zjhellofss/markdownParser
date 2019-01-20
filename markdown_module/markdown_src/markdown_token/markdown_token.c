@@ -6,7 +6,6 @@
 #include "markdown_token.h"
 #include "markdown_sentence.h"
 #include <regex.h>
-#include <server_log.h>
 
 void init_token (md_token *token) {
     token->m_size = 0;
@@ -42,7 +41,6 @@ void skip_space (char *file_path) {
     input_md = fopen(file_path, "r");
     tmp_md = fopen(MD_TMP_PATH, "w");
     if (!tmp_md || !input_md) {
-        write_log(EMERGE_L, getpid(), __FUNCTION__, __LINE__, "markdown文件打开失败");
         exit(1);
     }
     while (fread(&c, 1, 1, input_md)) {

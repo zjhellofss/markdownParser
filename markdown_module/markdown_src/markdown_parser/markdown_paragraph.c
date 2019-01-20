@@ -400,6 +400,6 @@ void pop_sentence (char *file_path) {
     strcpy(end_buf + strlen(end_buf), "</body></html>");
     produce_tmp_html_file(file_path, end_buf, false);
     free(prg);
-
+    make_real_html(file_path);
 }
 

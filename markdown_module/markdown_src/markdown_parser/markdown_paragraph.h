@@ -21,7 +21,7 @@ void push_sentence (md_stce stce);
 
 char *produce_underline (char *str);
 
-void pop_sentence ();
+void pop_sentence (char *file_path);
 
 char *produce_img_link (char *img_link);
 
