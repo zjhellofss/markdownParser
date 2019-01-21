@@ -4,8 +4,8 @@
 #define HTTPSERV_MARKDOWN_PARAGRAPH_H
 
 
-#include "../markdown_config.h"
-#include "markdown_sentence.h"
+#include <../markdown_config.h>
+#include <markdown_sentence.h>
 #include <string.h>
 #include <stdlib.h>
 

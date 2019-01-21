@@ -73,6 +73,23 @@ void produce_tmp_html_file (char *file, char *buf, bool init) {
                "    <script>\n"
                "        hljs.initHighlightingOnLoad();\n"
                "    </script>\n"
+               "<style type=\"text/css\">\n"
+               ".kh1 {padding-left: 0cm}\n"
+               ".kh2 {padding-left: 1cm}\n"
+               ".kh3 {padding-left: 2cm}\n"
+               ".kh4 {padding-left: 3cm}\n"
+               ".kh5 {padding-left: 4cm}\n"
+               ".kh6 {padding-left: 5cm}\n"
+               ".kh7 {padding-left: 6cm}\n"
+               "\n"
+               "</style>"
+               "<script type=\"text/x-mathjax-config\">\n"
+               "  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});\n"
+               "</script>\n"
+               "<script type=\"text/javascript\"\n"
+               "  src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">\n"
+               "</script>"
+
                "</head>");
         fwrite(buf1, sizeof(char), strlen(buf1), f);
     }

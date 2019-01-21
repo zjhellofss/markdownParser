@@ -34,7 +34,7 @@
 #define MD_FORM 0x16
 #define MD_FOOT 0x17
 typedef int MD_TYPE;
-#define MD_MAX_STCE 512
+#define MD_MAX_STCE 8192
 #define true 1
 #define false 0
 #define bool int

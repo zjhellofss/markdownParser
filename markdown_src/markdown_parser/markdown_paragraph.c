@@ -4,10 +4,12 @@
 #include <markdown_sentence.h>
 #include <../markdown_convert/markdown_tohtml.h>
 #include <stdlib.h>
+#include <markdown_headnodes.h>
 
 
 markdown_prg *prg = NULL;
-
+extern struct head_nodelist list;
+extern bool TOC;
 
 //todo 与容量有关的数据结构都应该改为动态构造的
 void init_paragraph () {
@@ -277,8 +279,8 @@ char *produce_quoteblock (char *str) {
 }
 
 void pop_sentence (char *file_path) {
-    char *md_html_start[36] = {"<ul><li>", "<ol><li>", "<del>", "<h1>", "<h2>",
-                               "<h3>", "<h4>", "<h5>", "<h6>",
+    char *md_html_start[36] = {"<ul><li>", "<ol><li>", "<del>", "<h1 >", "<h2 >",
+                               "<h3 >", "<h4 >", "<h5 >", "<h6 >",
                                "<h7>", "<i>", "<b>", "<code>", "<pre><xmp>", "<p>", "<a>", "<img>", "<blockquote>",
                                "<hr/>", ""};
 
@@ -294,6 +296,27 @@ void pop_sentence (char *file_path) {
     int pi = -1;
     bool is_block = false;
     produce_tmp_html_file(file_path, NULL, true);
+    //输出toc标签
+    if (list.l != 0&&TOC) {
+        char tmp_buf[1024] = {0};
+        strcpy(tmp_buf, "<h2>目录</h2>");
+        for (int p = 0; p < list.l; ++p) {
+
+            strcpy(tmp_buf + strlen(tmp_buf), "<p class=\"kh");
+            *(tmp_buf + strlen(tmp_buf)) = list.nodes[p].level + '0';
+            strcpy(tmp_buf + strlen(tmp_buf), "\">");
+            for (int q = 0; q < list.nodes[p].level; ++q) {
+                *(tmp_buf + strlen(tmp_buf)) = '-';
+                *(tmp_buf + strlen(tmp_buf)) = ' ';
+            }
+            strcpy(tmp_buf + strlen(tmp_buf), list.nodes[p].head_content);
+            strcpy(tmp_buf + strlen(tmp_buf), "</p>");
+        }
+        produce_tmp_html_file(file_path, tmp_buf, false);
+
+    }
+
+
     if (!prg) {
         printf("空文件\n");
         remove_tmp_html_file(file_path);
@@ -322,7 +345,7 @@ void pop_sentence (char *file_path) {
     }
     for (i = 0; i < prg->line_sum; ++i) {
         bool is_done;
-        char buf[4096] = {0};
+        char buf[8192] = {0};
         stce = prg->stces[i];
         if (stce.s_size != -1) {
             memset(buf, '\0', strlen(buf));

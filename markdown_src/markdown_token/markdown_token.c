@@ -6,6 +6,11 @@
 #include <markdown_token.h>
 #include <markdown_sentence.h>
 #include <regex.h>
+#include <markdown_headnodes.h>
+
+
+bool TOC = false;
+nodelist list;
 
 void init_token (md_token *token) {
     token->m_size = 0;
@@ -34,25 +39,25 @@ bool is_space (char c) {
     return c == ' ' || c == '\t' || c == '\v' || c == '\f';
 }
 
-void skip_space (char *file_path,char *tmp_file) {
+void skip_space (char *file_path, char *tmp_file) {
     char pre = '\0';
     FILE *input_md, *tmp_md;
     char c;
     input_md = fopen(file_path, "r");
-    if(!input_md){
+    if (!input_md) {
         printf("请输入有效的md文件地址\n");
         fflush(stdout);
         exit(1);
     }
     tmp_md = fopen(tmp_file, "w");
-    if(!tmp_md){
+    if (!tmp_md) {
         printf("请输入有效的缓冲文件地址\n");
         fflush(stdout);
         exit(1);
     }
 
     while (fread(&c, 1, 1, input_md)) {
-        if (((pre != '#' && pre != '*' && pre != '-') && ((is_space(pre) && is_space(c)))  ))
+        if (((pre != '#' && pre != '*' && pre != '-') && ((is_space(pre) && is_space(c)))))
             continue;
         else {
 
@@ -92,11 +97,11 @@ void produce_token (md_token *mt, FILE *f) {
     if (fread(&fc, 1, 1, f)) {
         size_t ret;
         switch (fc) {
-            case '_':{
+            case '_': {
                 /**下划线功能的实现*/
                 read_token(mt, f);
                 if (fread(&fc, sizeof(char), 1, f)) {
-                    if (fc=='_') {
+                    if (fc == '_') {
                         mt->type = MD_UNDER;
                     } else {
                         fseek(f, -1, SEEK_CUR);
@@ -116,7 +121,7 @@ void produce_token (md_token *mt, FILE *f) {
             case '@': {
                 read_token(mt, f);
                 if (fread(&fc, sizeof(char), 1, f)) {
-                    if (fc=='@') {
+                    if (fc == '@') {
                         mt->type = MD_HIGHLIGHT;
                     } else {
                         fseek(f, -1, SEEK_CUR);
@@ -188,7 +193,18 @@ void produce_token (md_token *mt, FILE *f) {
                 break;
             }
             case '!': {
-                read_token(mt, f);
+                while (true) {
+                    char c;
+                    if (!fread(&c, 1, 1, f)) {
+                        break;
+                    } else {
+                        mt->str[mt->m_size++] = c;
+                        if (c == ')') {
+                            break;
+                        }
+                    }
+                }
+
                 int res;
                 int len;
                 char result[BUFSIZ];
@@ -445,9 +461,18 @@ void produce_token (md_token *mt, FILE *f) {
                     }
                 } else if (p_size == 1) {
                     read_token(mt, f);
+
                     if (fread(&fc, 1, 1, f)) {
                         if (fc == '`') {
-                            mt->type = MD_QUOTE_S;
+                            if (!strcmp(mt->str, "TOC")) {
+                                mt->type = MD_PLAIN;
+                                mt->m_size = 0;
+                                memset(mt->str, '\0', strlen(mt->str));
+                                TOC = true;
+                                return;
+                            } else {
+                                mt->type = MD_QUOTE_S;
+                            }
                         } else {
                             mt->type = MD_PLAIN;//已经到了结束
                             memmove(mt->str + 1, mt->str, strlen(mt->str));
@@ -508,28 +533,58 @@ void produce_token (md_token *mt, FILE *f) {
                         mt->str[mt->m_size++] = '#';
                     }
                 } else {
+                    init_head_nodeList(&list);
                     switch (sharp_num) {
                         case 1:
                             mt->type = MD_HEAD1;
+                            head_node hn;
+                            hn.level = HEAD1;
+                            strcpy(hn.head_content, mt->str);
+                            nodelist_insert(&list, hn);
                             return;
                         case 2:
                             mt->type = MD_HEAD2;
+                            head_node hn2;
+                            hn2.level = HEAD2;
+                            strcpy(hn2.head_content, mt->str);
+                            nodelist_insert(&list, hn2);
                             return;
                         case 3:
                             mt->type = MD_HEAD3;
+                            mt->type = MD_HEAD2;
+                            head_node hn3;
+                            hn3.level = HEAD3;
+                            strcpy(hn3.head_content, mt->str);
+                            nodelist_insert(&list, hn3);
                             return;
                         case 4:
                             mt->type = MD_HEAD4;
+                            head_node hn4;
+                            hn4.level = HEAD4;
+                            strcpy(hn4.head_content, mt->str);
+                            nodelist_insert(&list, hn4);
                             return;
                         case 5:
                             mt->type = MD_HEAD5;
+                            head_node hn5;
+                            hn5.level = HEAD5;
+                            strcpy(hn5.head_content, mt->str);
+                            nodelist_insert(&list, hn5);
                             return;
                         case 6:
                             mt->type = MD_HEAD6;
+                            head_node hn6;
+                            hn6.level = HEAD6;
+                            strcpy(hn6.head_content, mt->str);
+                            nodelist_insert(&list, hn6);
                             return;
                         default:
                             //fixme
                             mt->type = MD_HEAD7;
+                            head_node hn7;
+                            hn7.level = HEAD7;
+                            strcpy(hn7.head_content, mt->str);
+                            nodelist_insert(&list, hn7);
                             return;
                     }
                 }
