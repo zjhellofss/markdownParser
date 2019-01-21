@@ -15,8 +15,7 @@ void convert_html2pdf (const char *filename) {
     memset(filename_prefix, '\0', 128);
     strncpy(filename_prefix, filename, file_ - filename);
     strcpy(filename_prefix + strlen(filename_prefix), ".pdf");
-
-    sprintf(command, "%s %s %s %s", "wkhtmltopdf", "--footer-font-name 'Menlo' --footer-right [page] --encoding utf-8 --no-stop-slow-scripts ", filename_prefix_h, filename_prefix);
+    sprintf(command, "%s %s %s %s", "wkhtmltopdf", "--footer-font-name 'Menlo' --footer-right [page] --encoding utf-8 --no-stop-slow-scripts --javascript-delay 2500 ", filename_prefix_h, filename_prefix);
     system(command);
     free(filename_prefix);
     free(filename_prefix_h);

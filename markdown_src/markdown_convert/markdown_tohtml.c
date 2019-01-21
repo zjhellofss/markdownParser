@@ -68,8 +68,8 @@ void produce_tmp_html_file (char *file, char *buf, bool init) {
                "    <script src=\"https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js\"></script>\n"
                "    <script src=\"https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n"
                "\n"
-               "    <link rel=\"stylesheet\" href=\"../markdown_src/markdown_htmlcss/github.css\">\n"
-               "    <script src=\"../markdown_src/markdown_htmlcss/highlight.pack.js\"></script>\n"
+               "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css\">\n"
+               "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js\"></script>\n"
                "    <script>\n"
                "        hljs.initHighlightingOnLoad();\n"
                "    </script>\n"
@@ -87,7 +87,7 @@ void produce_tmp_html_file (char *file, char *buf, bool init) {
                "  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});\n"
                "</script>\n"
                "<script type=\"text/javascript\"\n"
-               "  src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">\n"
+               "  src=\"https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">\n"
                "</script>"
 
                "</head>");

@@ -15,7 +15,15 @@
  
 > 引用测试本页面的效果均有httpServer中的markdown模块转换得到
 ## 文本测试
-这是一条文本
+**To be, or not to be- that is the question:**
+whether it's nobler in the mind to suffer the slings and arrows of outrageous fortune,
+or to take arms against a sea of troubles, and by opposing end them? To die:to sleep;
+no more; andby a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to.
+'tis a consummation devoutly to be wish'd. To die: to sleep; To sleep: perchance to dream: ay, there's the rub: for in that sleep of death what dreams may come when we have shuffled off this mortal coil, 
+must give us pause: there's the respect that makes calamity of so long life;For who would bear the whips and scorns of time, the oppressor's wrong, 
+the proud man's contumely, the pangs of despis'd love, the law's delay,
+And thus the native hue of resolution is sicklied o'er with the pale cast of thought, and enterprises of great pith and moment with this regard their currents turn awry,
+and lose the name of action.
 ## 列表功能测试
 1. 列表1
 2. 列表2
@@ -76,6 +84,7 @@ bool issymbol (char c) {
 ```
 ## Latex公式测试
 $x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 ## 短引用测试
 终端使用命令`nohuphttpServer&`启动服务器
 \foot(脚注测试){[1].markdown是如何炼成的}{[2].markdown装逼指南}{[3].C语言从入门到放弃}
