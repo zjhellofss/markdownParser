@@ -35,14 +35,14 @@ char *markdown_passage_translate_ (char *q) {
     }
     char *es_q = curl_escape(q, (int) strlen(q));
     char myurl[16384] = "http://api.fanyi.baidu.com/api/trans/vip/translate?";
-    char *appid = "20160517000021280";
+    char *appid = "2xxxxxxxxxx21280";
     char *from = "auto";
     char *to = "zh";
     char salt[60];
     srand((unsigned) time(NULL));
     int a = rand();
     sprintf(salt, "%d", a);
-    char *secret_key = "NxJF4bJA97zbnwwrBN5_";
+    char *secret_key = "NaIWQPOIE@!(_)sdsadxJF4xxbJAqwe97zsqwezcbnwwsadrBsadsadaN5_";
     char sign[16384] = {0};
     strcat(sign, appid);
     strcat(sign, q);
