@@ -1,9 +1,11 @@
 #include <markdown_parser.h>
 #include <markdown_config.h>
 #include <markdown_html2pdf.h>
+#include <markdown_translate/markdown_translate.h>
 #include <stdio.h>
 #include <getopt.h>
 #include <string.h>
+#include <stdlib.h>
 
 int main (int argc, char *argv[]) {
     if (argc < 2) {

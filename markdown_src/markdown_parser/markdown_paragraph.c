@@ -5,6 +5,8 @@
 #include <../markdown_convert/markdown_tohtml.h>
 #include <stdlib.h>
 #include <markdown_headnodes.h>
+#include <markdown_convert/markdown_time.h>
+#include <markdown_translate/markdown_translate.h>
 
 
 markdown_prg *prg = NULL;
@@ -262,19 +264,58 @@ char *produce_table (char *tstr) {
  * <pre><code class="html"> </code></pre>
  * */
 char *produce_quoteblock (char *str) {
-    char *buf = malloc(4096 * sizeof(char));
+    char *buf = malloc(16384 * sizeof(char));
     memset(buf, '\0', strlen(buf));
+    struct res_node_list *l = NULL;
     int i = 0;
     while (str[i] != '|') {
         i++;
     }
     char type[16];
     strncpy(type, str, i);
-    strcpy(buf + strlen(buf), "<pre><code class=\"");
-    strcpy(buf + strlen(buf), type);
-    strcpy(buf + strlen(buf), "\">");
-    strcpy(buf + strlen(buf), str + i + 1);
-    strcpy(buf + strlen(buf), "</code></pre>");
+    if (!strcmp(type, "trans")) {
+        l = markdown_passage_translate(str + i + 1);
+        strcpy(buf + strlen(buf), "<pre><code class=\"");
+        strcpy(buf + strlen(buf), "nohighlight");
+        strcpy(buf + strlen(buf), "\">");
+        /*原文*/
+        int j;
+        for (j = 0; j < l->s_len; ++j) {
+            size_t len = strlen(l->ts_src_lists[j].str);
+            char src[len];
+            memset(src, '\0', len);
+            strcpy(src, l->ts_src_lists[j].str);
+            strcpy(buf + strlen(buf), src);
+        }
+        strcpy(buf + strlen(buf), " 译文如下:");
+        for (j = 0; j < l->d_len; ++j) {
+            size_t len = strlen(l->ts_dst_lists[j].str);
+            char dst[len];
+            memset(dst, '\0', len);
+            strcpy(dst, l->ts_dst_lists[j].str);
+            strcpy(buf + strlen(buf), dst);
+        }
+        strcpy(buf + strlen(buf), "</code></pre>");
+    } else {
+        strcpy(buf + strlen(buf), "<pre><code class=\"");
+        strcpy(buf + strlen(buf), type);
+        strcpy(buf + strlen(buf), "\">");
+        strcpy(buf + strlen(buf), str + i + 1);
+        strcpy(buf + strlen(buf), "</code></pre>");
+    }
+    if (l) {
+        /*内存回收*/
+        char *d;
+        for (i = 0; i < l->s_len; ++i) {
+            d = l->ts_src_lists[i].str;
+            free(d);
+        }
+        for (i = 0; i < l->d_len; ++i) {
+            d = l->ts_dst_lists[i].str;
+            free(d);
+        }
+        free(l);
+    }
     return buf;
 }
 
@@ -297,7 +338,7 @@ void pop_sentence (char *file_path) {
     bool is_block = false;
     produce_tmp_html_file(file_path, NULL, true);
     //输出toc标签
-    if (list.l != 0&&TOC) {
+    if (list.l != 0 && TOC) {
         char tmp_buf[1024] = {0};
         strcpy(tmp_buf, "<h2>目录</h2>");
         for (int p = 0; p < list.l; ++p) {
@@ -424,10 +465,18 @@ void pop_sentence (char *file_path) {
         }
         produce_tmp_html_file(file_path, buf, false);
     }
-    char end_buf[24];
+    char end_buf[256];
+    char *t = get_current_time();
+    strcpy(end_buf + strlen(end_buf), "<footer class=\"footer\">\n"
+                                      "    <div class=\"container text-right\" >\n"
+                                      "        <p class=\"lead\"> ");
+    strcpy(end_buf + strlen(end_buf), t);
+    strcpy(end_buf + strlen(end_buf), "</p>\n"
+                                      "    </div></footer>");
     strcpy(end_buf + strlen(end_buf), "</body></html>");
     produce_tmp_html_file(file_path, end_buf, false);
     free(prg);
+    free(t);
     make_real_html(file_path);
 }
 

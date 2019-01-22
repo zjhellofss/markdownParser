@@ -13,17 +13,17 @@
 ## 目录测试
 (TOC标签)`TOC`如果正确工作 会在文首显示本文的目录结构
  
-> 引用测试本页面的效果均有httpServer中的markdown模块转换得到
+> “焚诗书，坑术士”
+> ——-《史记》
 ## 文本测试
-**To be, or not to be- that is the question:**
-whether it's nobler in the mind to suffer the slings and arrows of outrageous fortune,
-or to take arms against a sea of troubles, and by opposing end them? To die:to sleep;
-no more; andby a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to.
-'tis a consummation devoutly to be wish'd. To die: to sleep; To sleep: perchance to dream: ay, there's the rub: for in that sleep of death what dreams may come when we have shuffled off this mortal coil, 
-must give us pause: there's the respect that makes calamity of so long life;For who would bear the whips and scorns of time, the oppressor's wrong, 
-the proud man's contumely, the pangs of despis'd love, the law's delay,
-And thus the native hue of resolution is sicklied o'er with the pale cast of thought, and enterprises of great pith and moment with this regard their currents turn awry,
-and lose the name of action.
+To be, or not to be that is the question:
+## 翻译功能测试
+```trans
+There were a king with a large jaw and a queen with a plain face, on the throne of England;
+there were a king with a large jaw and a queen with a fair face, on the throne of France.
+In both countries it was clearer than crystal to the lords of the State preserves of loaves and fishes,
+that things in general were settled for ever.
+```
 ## 列表功能测试
 1. 列表1
 2. 列表2
@@ -37,6 +37,7 @@ and lose the name of action.
 ## 高亮效果测试
 ### shell 高亮 
 ```bash
+ 很厉害的中文
  mkdir build
  cd build 
  make ../
