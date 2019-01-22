@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charse="utf-8">
+    <title>/Users/fss/mjj/markdown_module/test/hjkl.md</title><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+<style type="text/css">
+.kh1 {padding-left: 0cm}
+.kh2 {padding-left: 1cm}
+.kh3 {padding-left: 2cm}
+.kh4 {padding-left: 3cm}
+.kh5 {padding-left: 4cm}
+.kh6 {padding-left: 5cm}
+.kh7 {padding-left: 6cm}
+
+</style><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script></head><h2>目录</h2><p class="kh1">-  markdown模块效果测试</p><p class="kh2">- -  图片测试</p><p class="kh2">- -  引用测试</p><p class="kh2">- -  选择框测试 </p><p class="kh2">- -  目录测试</p><p class="kh2">- -  文本测试</p><p class="kh2">- -  翻译功能测试</p><p class="kh2">- -  列表功能测试</p><p class="kh2">- -  表格功能测试</p><p class="kh2">- -  单行测试</p><p class="kh2">- -  高亮效果测试</p><p class="kh3">- - -  shell 高亮 </p><p class="kh3">- - -  JSON高亮</p><p class="kh3">- - -  C代码高亮测试</p><p class="kh2">- -  Latex公式测试</p><p class="kh2">- -  短引用测试</p><p><h1 > markdown模块效果测试</h1></p><p><hr/> </p><p><blockquote> <ul><li>引用测试本页面的效果均有httpServer中的markdown模块转换得到</li></ul> <ul><li>引用测试本页面的效果均有httpServer中的markdown模块转换得到</li></ul></blockquote></p><p><h2 > 图片测试</h2></p><p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3076146004,1639119126&fm=26&gp=0.jpg"/></p><p><h2 > 引用测试</h2></p><p><a href="http://www.baidu.com">这是一段引用</a> 这段话来自《markdown装逼指南》[1]</a></p><p><h2 > 选择框测试 </h2></p><p><input type="checkbox" checked> 单选1</p><p><input type="checkbox" > 单选2</p><p><input type="checkbox" checked> 单选3</p><p><h2 > 目录测试</h2></p><p><p>(TOC标签)如果正确工作 会在文首显示本文的目录结构</p></p><p><p> </p></p><p><blockquote> “焚诗书，坑术士” ——《史记》</blockquote></p><p><h2 > 文本测试</h2></p><p><p>To be, or not to be that is the question:</p></p><p><h2 > 翻译功能测试</h2></p><p><pre><code class="nohighlight">There were a king with a large jaw and a queen with a plain face, on the throne of England;there were a king with a large jaw and a queen with a fair face, on the throne of France.In both countries it was clearer than crystal to the lords of the State preserves of loaves and fishes,that things in general were settled for ever. 译文如下:在英格兰的王位上，有一个大下巴的国王和一个面容朴素的王后；在法国的王位上，有一位大下巴的国王和一位面容姣好的王后。在这两个国家，对国家元首来说，面包和鱼的保存比水晶还要清晰，总的来说，事情是永远解决的。</code></pre></p><p><h2 > 列表功能测试</h2></p><p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp; 列表1</p></p><p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp; 列表2</p></p><p><ul><li>列表3</li></ul></p><p><ul><li>列表4</li></ul></p><p><ul><li>列表5</li></ul></p><p><h2 > 表格功能测试</h2></p><p><table class="table table-striped table-bordered"  ><tr><th>name</th><th>price</th><th>sum</th></tr><tr><td>piano</td><td>$5000</td><td>4</td></tr><tr><td>violin</td><td>35000</td><td>2</td></tr><tr><td>suona</td><td>5000</td></tr></table></p><p><h2 > 单行测试</h2></p><p><b>加粗</b> <i>斜体</i> <u>下划线</u><del>删除</del><font style="color:red">高亮</font>普通文本:<u></u><i>notitaly</i><b>black</b><font style="color:red">red</font></p><p><h2 > 高亮效果测试</h2></p><p><h2 > shell 高亮 </h2></p><p><pre><code class="bash"> 很厉害的中文
+ mkdir build
+ cd build 
+ make ../
+ sudo make .. install
+</code></pre></p><p><h2 > JSON高亮</h2></p><p><pre><code class="JSON">{"server":{
+"port":9999,
+"dynamic_file":[
+"/examples/servlets/"
+],
+"tips1": "redirect_path仅针对Java项目进行进行转发，load_server是针对PHP文件的负载均衡,如下",
+"redirect_path":["/xyd/anon","/api/carousel"],
+"tip2":"被转发Java请求的网站",
+"redirect_site":["https://doublehh.cn","http://doublehh.cn:82"],
+"map_path":"/Users/fss/CLionProjects/httpServ/",
+"index":"hello.html",
+"log_path":"/Users/fss/servlog.log",
+"alternate_port":9998,
+"static_page":"./www/http/pages/static/%s",
+"load_balancing":1,
+"load_servers":[8080,8081,8082]
+}}
+</code></pre></p><p><h2 > C代码高亮测试</h2></p><p><pre><code class="C">bool issymbol (char c) {
+ switch (c) {
+ case '-' :
+ case '*':
+ case '~':
+ case '`':
+ case '#':
+ case '!':
+ case '^':
+ case '<':
+ case '@'://表示高亮
+ case '_':
+ return true;
+ default:
+ return false;
+ }
+}
+</code></pre></p><p><h2 > Latex公式测试</h2></p><p><p>$x = {b \pm \sqrt{b2-4ac} \over 2a}.$</p></p><p><p>$$x = {b \pm \sqrt{b2-4ac} \over 2a}.$$</p></p><p><h2 > 短引用测试</h2></p><p><p>终端使用命令<code>nohuphttpServer&</code>启动服务器</p></p><p><ul class="list-group"><a href="#" class="list-group-item active"><h4 class="list-group-item-heading">脚注测试</h4></a><li class="list-group-item">[1].markdown是如何炼成的</li><li class="list-group-item">[2].markdown装逼指南</li><li class="list-group-item">[3].C语言从入门到放弃</li></p><footer class="footer">
+    <div class="container text-right" >
+        <p class="lead"> 2019/1/22 17:22:09
+</p>
+    </div></footer></body></html>
