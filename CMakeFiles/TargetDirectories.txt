@@ -1,7 +1,0 @@
-/Users/fss/mjj/markdown_module/CMakeFiles/install/local.dir
-/Users/fss/mjj/markdown_module/CMakeFiles/install/strip.dir
-/Users/fss/mjj/markdown_module/CMakeFiles/install.dir
-/Users/fss/mjj/markdown_module/CMakeFiles/list_install_components.dir
-/Users/fss/mjj/markdown_module/CMakeFiles/rebuild_cache.dir
-/Users/fss/mjj/markdown_module/CMakeFiles/edit_cache.dir
-/Users/fss/mjj/markdown_module/CMakeFiles/parser.dir
