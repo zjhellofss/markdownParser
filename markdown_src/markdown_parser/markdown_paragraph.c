@@ -90,7 +90,11 @@ char *produce_link_link (char *link) {
     strcpy(buf + strlen(buf), "<a href=\"");
     strcpy(buf + strlen(buf), link_ref);
     strcpy(buf + strlen(buf), "\">");
-    strcpy(buf + strlen(buf), link_name);
+    if (!strcmp(link_name, "")) {
+        strcpy(buf + strlen(buf), link_ref);
+    }else{
+        strcpy(buf + strlen(buf), link_name);
+    }
     strcpy(buf + strlen(buf), "</a>");
     free(o_l);
     free(o_l2);
@@ -158,13 +162,18 @@ char *produce_foot (char *str) {
         }
     }
 
-
+    while ((c = tstr[i]) == ' ') {
+        i++;
+    }
     for (int u = 0; u < n; ++u) {
         memset(tstr, '\0', strlen(tstr));
         j = 0;
         while (true) {
             c = str[i];
-            if (c == '{') {
+            if (c == ' ') {
+                i++;
+                continue;
+            } else if (c == '{') {
                 i++;
                 continue;
             } else {
@@ -186,8 +195,10 @@ char *produce_foot (char *str) {
 
 char *produce_table (char *tstr) {
     char *buf = malloc(1024 * sizeof(char));
+    memset(buf, '\0', sizeof(char) * 1024);
     strcpy(buf, "<table class=\"table table-striped table-bordered\"  ><tr>");
     char *tmp_str = malloc(96 * sizeof(char));
+    memset(tmp_str, '\0', sizeof(char) * 96);
     //读表格的标题
     int i = 0;
     int j = 0;
@@ -218,6 +229,9 @@ char *produce_table (char *tstr) {
             }
             i++;
         }
+    }
+    while ((c = tstr[i]) == ' ') {
+        i++;
     }
     int n = 0;
     for (int k = i; k < strlen(tstr); ++k) {
@@ -418,6 +432,7 @@ void pop_sentence (char *file_path) {
                     }
                     if (is_done) {
                         strcpy(buf + strlen(buf), tmp_buf);
+                        memset(tmp_buf,'\0',strlen(tmp_buf));/**玄学代码*/
                         free(tmp_buf);
                         stce.tokens[j].type = -1;
                     }
