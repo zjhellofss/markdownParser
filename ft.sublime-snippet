@@ -1,0 +1,8 @@
+<snippet>
+     <content>
+     <![CDATA[\foot(参考文献){[1].}{[2].}]]>
+     </content>
+     <tabTrigger>ft</tabTrigger>
+     <description>foot-create</description>
+</snippet>
+

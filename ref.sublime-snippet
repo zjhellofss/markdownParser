@@ -1,0 +1,8 @@
+<snippet>
+     <content>
+     <![CDATA[^[ref][www.]  ]]>
+     </content>
+     <tabTrigger>ref</tabTrigger>
+     <description>ref-create</description>
+</snippet>
+

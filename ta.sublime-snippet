@@ -1,0 +1,7 @@
+<snippet>
+     <content>
+     <![CDATA[\table(h1,h2)[c1,c2] ]]>
+     </content>
+     <tabTrigger>ta</tabTrigger>
+     <description>table-create</description>
+</snippet>
