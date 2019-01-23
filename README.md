@@ -63,18 +63,24 @@
 ```
 ## 解析器的使用
 
-在shell中使用
+### 在shell中使用
 ```bash
   $ md_parser test.md
   $ ls -l test.html
 ```
 **在markdown所在的文件目录下会生成对应的html文件**
 
-以模块的方式在C项目中使用
+### 以模块的方式在C项目中使用
 ```c
     const char *file_name = "test.md"
     do_parser(file_name);
 ```
+
+### 配合sublime使用 
+1. 将 snippets和build格式的文件拷贝到 ~/Library/Application Support/SublimeText3/Packages/User 文件夹下
+2. 在 Tools --》 build system --》 选择`MD`
+3. 编写markdown文件
+4. 在编写完毕后，按快捷键 `command+shift+B`，便可执行markdown文件的build
 
 ## 使用说明
 
@@ -123,4 +129,6 @@ _加下划线的字体_
 表格 \table(name,price,sum)[piano,$5000,4][violin,35000,2][suona,5000]
 
 <pre>
+
+
 
