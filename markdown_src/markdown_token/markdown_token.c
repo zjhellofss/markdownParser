@@ -276,9 +276,13 @@ void produce_token (md_token *mt, FILE *f) {
                         return;
                     } else {
                         fseek(f, -2, SEEK_CUR);
+                        mt->str[mt->m_size++] = '-';
+                        mt->type = MD_PLAIN;
+                        return;
                     }
                 } else {
                     fseek(f, -ret, SEEK_CUR);
+                    return;
                 }
                 fread(&fc, 1, 1, f);
                 if (fc == ' ') {
