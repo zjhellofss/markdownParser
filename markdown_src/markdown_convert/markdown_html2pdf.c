@@ -2,8 +2,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <markdown_config.h>
+#include <markdown_html2pdf.h>
 
-void convert_html2pdf (const char *filename) {
+void convert_html2pdf (const char *filename, bool is_delay) {
     char *command = malloc(512);
     char *filename_prefix_h = malloc(sizeof(char) * 128);
     memset(filename_prefix_h, '\0', 128);
@@ -15,7 +17,15 @@ void convert_html2pdf (const char *filename) {
     memset(filename_prefix, '\0', 128);
     strncpy(filename_prefix, filename, file_ - filename);
     strcpy(filename_prefix + strlen(filename_prefix), ".pdf");
-    sprintf(command, "%s %s %s %s", "wkhtmltopdf", "--footer-font-name 'Menlo' --footer-right [page] --encoding utf-8 --no-stop-slow-scripts --javascript-delay 2500 ", filename_prefix_h, filename_prefix);
+    if (is_delay)
+        sprintf(command, "%s %s %s %s", "wkhtmltopdf",
+                "--footer-font-name 'Menlo' --footer-right [page] --encoding utf-8 --no-stop-slow-scripts --javascript-delay 2500 ",
+                filename_prefix_h, filename_prefix);
+    else {
+        sprintf(command, "%s %s %s %s", "wkhtmltopdf",
+                "--footer-font-name 'Menlo' --footer-right [page] --encoding utf-8  ",
+                filename_prefix_h, filename_prefix);
+    }
     system(command);
     free(filename_prefix);
     free(filename_prefix_h);

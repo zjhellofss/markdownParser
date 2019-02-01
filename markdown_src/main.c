@@ -16,7 +16,7 @@ int main (int argc, char *argv[]) {
     bool is_printpdf = false;
     bool is_delay = false;
     int opt;
-    while ((opt = getopt(argc, argv, "af:")) != -1) {
+    while ((opt = getopt(argc, argv, "anf:")) != -1) {
         switch (opt) {
             case 'a':
                 is_printpdf = true;
@@ -35,7 +35,9 @@ int main (int argc, char *argv[]) {
     }
     do_parser(file_name);
     if (is_printpdf) {
-        convert_html2pdf(file_name);
+        printf("正在输出为pdf,请稍后...\n");
+        convert_html2pdf(file_name, is_delay);
+        printf("pdf生成完毕...\n");
     }
     return 0;
 }

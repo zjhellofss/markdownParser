@@ -9,7 +9,6 @@ void do_parser (char *file_name) {
     FILE *f;
     tmp_name = tmpnam(NULL);
     f = fopen(tmp_name, "w+");
-    fprintf(stdout, "%s\n", tmp_name);
     if (!f) {
         exit(1);
     }

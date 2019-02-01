@@ -26,7 +26,7 @@ void make_real_html (char *file) {
     fclose(f2);
     /*删除临时文件*/
     remove(html_file);
-    printf("转换完毕，请在html同目录下寻找产生的md文件\n");
+    printf("转换完毕，请在md同目录下寻找产生的html文件\n");
 }
 
 void remove_tmp_html_file (char *file) {
@@ -35,8 +35,8 @@ void remove_tmp_html_file (char *file) {
     char html_file[256] = {0};
     strncpy(html_file, file, file_ - file);
     strcpy(html_file + strlen(html_file), ".html");
-    FILE*t = fopen(html_file, "w+");
-    if(!t){
+    FILE *t = fopen(html_file, "w+");
+    if (!t) {
         fclose(t);
     }
     strcpy(html_file + strlen(html_file), ".tmp");
@@ -81,6 +81,8 @@ void produce_tmp_html_file (char *file, char *buf, bool init) {
                ".kh5 {padding-left: 4cm}\n"
                ".kh6 {padding-left: 5cm}\n"
                ".kh7 {padding-left: 6cm}\n"
+               "body\n"
+               "{margin:20px;padding:50px;}"
                "\n"
                "</style>"
                "<script type=\"text/x-mathjax-config\">\n"

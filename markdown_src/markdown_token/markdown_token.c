@@ -275,7 +275,7 @@ void produce_token (md_token *mt, FILE *f) {
                         return;
                     }
                 } else {
-                    mt->type = MD_PLAIN;
+                    mt->type = MD_UD_LIST;
                     mt->str[mt->m_size++] = '-';
                     return;
                 }
@@ -284,6 +284,10 @@ void produce_token (md_token *mt, FILE *f) {
                     if (fc == ' ') {
                         mt->type = MD_UD_LIST;
                         read_token(mt, f);
+                    } else if (fc == '-') {
+                        mt->type = MD_PLAIN;
+                        mt->str[mt->m_size++] = '-';
+                        mt->str[mt->m_size++] = '-';
                     } else {
                         mt->type = MD_PLAIN;
                         //回退一个位置
