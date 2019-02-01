@@ -268,31 +268,29 @@ void produce_token (md_token *mt, FILE *f) {
             }
             case '-' : {
                 char buf[12] = {0};
-                size_t ret;
                 if ((ret = fread(buf, sizeof(char), 2, f)) != 0) {
                     if (!strcmp(buf, "--")) {
                         mt->type = MD_LINE;
                         mt->m_size = 1;
                         return;
-                    } else {
-                        fseek(f, -2, SEEK_CUR);
-                        mt->str[mt->m_size++] = '-';
-                        mt->type = MD_PLAIN;
-                        return;
                     }
                 } else {
-                    fseek(f, -ret, SEEK_CUR);
+                    mt->type = MD_PLAIN;
+                    mt->str[mt->m_size++] = '-';
                     return;
                 }
-                fread(&fc, 1, 1, f);
-                if (fc == ' ') {
-                    mt->type = MD_UD_LIST;
-                    read_token(mt, f);
-                } else {
-                    mt->type = MD_PLAIN;
-                    //回退一个位置
-                    fseek(f, -1, SEEK_CUR);
-                    read_token(mt, f);
+                fseek(f, -ret, SEEK_CUR);
+                if ((ret = fread(&fc, sizeof(char), 1, f)) != 0) {
+                    if (fc == ' ') {
+                        mt->type = MD_UD_LIST;
+                        read_token(mt, f);
+                    } else {
+                        mt->type = MD_PLAIN;
+                        //回退一个位置
+                        fseek(f, -1, SEEK_CUR);
+                        mt->str[mt->m_size++] = '-';
+                        read_token(mt, f);
+                    }
                 }
                 break;
             }
