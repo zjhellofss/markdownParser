@@ -27,6 +27,7 @@ bool issymbol (char c) {
         case '!':
         case '^':
         case '<':
+        /*case '>':*/
         case '@'://表示高亮
         case '_':
             return true;
@@ -118,6 +119,22 @@ void produce_token (md_token *mt, FILE *f) {
                 }
                 break;
             }
+           /* case '}': {
+                if (fread(&fc, sizeof(char), 1, f)) {
+                    if (fc == '>') {
+                        read_token(mt, f);
+                        mt->type = MD_RIGHT;
+                    } else {
+                        mt->str[mt->m_size++] = '>';
+                        mt->type = MD_PLAIN;
+                        fseek(f, -1, SEEK_CUR);
+                    }
+                } else {
+                    mt->str[mt->m_size++] = '>';
+                    mt->type = MD_PLAIN;
+                }
+                break;
+            }*/
             case '@': {
                 read_token(mt, f);
                 if (fread(&fc, sizeof(char), 1, f)) {
@@ -557,7 +574,6 @@ void produce_token (md_token *mt, FILE *f) {
                             return;
                         case 3:
                             mt->type = MD_HEAD3;
-                            mt->type = MD_HEAD2;
                             head_node hn3;
                             hn3.level = HEAD3;
                             strcpy(hn3.head_content, mt->str);
@@ -601,7 +617,7 @@ void produce_token (md_token *mt, FILE *f) {
                     if (fread(&fc, 1, 1, f)) {
                         if (fc == '.') {
                             mt->type = MD_PLAIN;
-                            char n_str[6] = "&nbsp;";
+                            char n_str[6] = SPACE;
                             for (int i = 0; i < 6; ++i) {
                                 for (int j = 0; j < 6; ++j) {
                                     mt->str[mt->m_size++] = n_str[j];

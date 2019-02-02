@@ -11,7 +11,7 @@ typedef struct md_token {
     char str[1024];//用来储存对应MD类型的的字符串
 } md_token;
 #define MAX_TOKEN_SIZE 1024
-
+#define SPACE "&nbsp;"
 
 void init_token (md_token *token);
 

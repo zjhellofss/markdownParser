@@ -33,6 +33,7 @@
 #define MD_UNDER  0x15
 #define MD_FORM 0x16
 #define MD_FOOT 0x17
+#define MD_RIGHT 0x18
 typedef int MD_TYPE;
 #define MD_MAX_STCE 8192
 #define true 1

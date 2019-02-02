@@ -68,7 +68,7 @@ void produce_tmp_html_file (char *file, char *buf, bool init) {
                "    <script src=\"https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js\"></script>\n"
                "    <script src=\"https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n"
                "\n"
-               "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css\">\n"
+               "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css\">\n"
                "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js\"></script>\n"
                "    <script>\n"
                "        hljs.initHighlightingOnLoad();\n"

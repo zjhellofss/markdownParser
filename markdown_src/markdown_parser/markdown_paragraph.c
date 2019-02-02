@@ -92,7 +92,7 @@ char *produce_link_link (char *link) {
     strcpy(buf + strlen(buf), "\">");
     if (!strcmp(link_name, "")) {
         strcpy(buf + strlen(buf), link_ref);
-    }else{
+    } else {
         strcpy(buf + strlen(buf), link_name);
     }
     strcpy(buf + strlen(buf), "</a>");
@@ -285,8 +285,9 @@ char *produce_quoteblock (char *str) {
     while (str[i] != '|') {
         i++;
     }
-    char type[16];
+    char type[16] = {0};
     strncpy(type, str, i);
+
     if (!strcmp(type, "trans")) {
         l = markdown_passage_translate(str + i + 1);
         strcpy(buf + strlen(buf), "<pre><code class=\"");
@@ -312,7 +313,11 @@ char *produce_quoteblock (char *str) {
         strcpy(buf + strlen(buf), "</code></pre>");
     } else {
         strcpy(buf + strlen(buf), "<pre><code class=\"");
-        strcpy(buf + strlen(buf), type);
+        if (!strlen(type)) {
+            strcpy(buf + strlen(buf), "nohighlight");
+        } else {
+            strcpy(buf + strlen(buf), type);
+        }
         strcpy(buf + strlen(buf), "\">");
         strcpy(buf + strlen(buf), str + i + 1);
         strcpy(buf + strlen(buf), "</code></pre>");
@@ -432,7 +437,7 @@ void pop_sentence (char *file_path) {
                     }
                     if (is_done) {
                         strcpy(buf + strlen(buf), tmp_buf);
-                        memset(tmp_buf,'\0',strlen(tmp_buf));/**玄学代码*/
+                        memset(tmp_buf, '\0', strlen(tmp_buf));/**玄学代码*/
                         free(tmp_buf);
                         stce.tokens[j].type = -1;
                     }
