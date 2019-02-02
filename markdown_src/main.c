@@ -6,7 +6,7 @@
 #include <getopt.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include <curl/curl.h>
 int main (int argc, char *argv[]) {
     if (argc < 2) {
         printf("ex: md_parser -f markdown.md -a {need print pdf?}? -n {delay to load js in html?} \n");
