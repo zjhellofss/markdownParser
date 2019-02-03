@@ -277,10 +277,10 @@ void produce_token (md_token *mt, FILE *f) {
                 res = regexec(&preg, mt->str, 10, pmatch, REG_NOTBOL);
                 if (res == REG_NOMATCH) {
                     mt->type = MD_PLAIN;
-                    return;
                 } else {
                     mt->type = MD_LINK;
                 }
+                regfree(&preg);
                 break;
             }
             case '-' : {

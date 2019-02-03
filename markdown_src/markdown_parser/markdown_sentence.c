@@ -116,6 +116,7 @@ void process_sentence (char *path, char *tmp_path) {
             memcpy(result, tmp_line + pmatch[0].rm_so, len);
             result[len] = 0;
             init_stce(&st);
+            regfree(&preg);
             md_token token_tmp;
             init_token(&token_tmp);
             strcpy(token_tmp.str, result);

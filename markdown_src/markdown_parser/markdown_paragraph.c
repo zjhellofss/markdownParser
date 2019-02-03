@@ -190,6 +190,7 @@ char *produce_foot (char *str) {
             }
         }
     }
+    free(tstr);
     return buf;
 }
 
